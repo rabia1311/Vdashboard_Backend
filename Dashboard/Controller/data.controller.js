@@ -13,4 +13,15 @@ const createData=async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   };
-  module.exports={createData}
+
+
+  const getData = async (req, res) => {
+    try {
+      const allData = await Datamodel.find();
+      res.status(200).json(allData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+  module.exports={createData,getData}
